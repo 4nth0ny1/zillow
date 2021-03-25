@@ -1,0 +1,23 @@
+<h1> edit your listing </h1>
+
+<form action="/listings/<%= @listing.id %>" method="POST" >
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="listing_description">Description: </label>
+    <br>
+    <input type="text" name="listing_description" value="<%= @listing.listing_description %>">
+    <br>
+    <label for="address">Address: </label>
+    <br>
+    <input type="text" name="address" value="<%= @listing.address %>">
+    <br>
+    <label for="price">Price: </label>
+    <br>
+    <input type="text" name="price" value="<%= @listing.price %>">
+    <br>
+    <label for="features">Features: </label>
+    <br>
+    <input type="text" name="features" value="<%= @listing.features %>">
+    <br>
+    <br>
+    <input type="submit" value="Update">
+</form>

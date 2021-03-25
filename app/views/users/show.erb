@@ -1,0 +1,15 @@
+<%= @user.name %> 
+<br>
+<%= @user.phone_number %>
+<br>
+<%= @user.email %>
+<br>
+<%= @user.password %>
+
+<h2>Listings</h2>   <!--- Using the association has many listings-->
+<% @user.listings.each do |listing| %>
+    <p><%= listing.listing_description %></p>
+    <p><%= listing.address %></p>
+    <p><%= listing.price %></p>
+    <p><%= listing.features %></p>
+<% end %>
