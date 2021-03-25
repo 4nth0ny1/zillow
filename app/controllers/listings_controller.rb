@@ -24,7 +24,6 @@ class ListingsController < ApplicationController
         erb :'listings/show'
     end
 
-
     #update
     
     get '/listings/:id/edit' do 

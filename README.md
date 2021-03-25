@@ -1,3 +1,10 @@
+Todos 
+welcome buttons don't work 
+delete button from listing page doesn't work 
+
+
+
+
 Simple Zillow App 
 
 Flow 
