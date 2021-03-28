@@ -6,6 +6,8 @@
 <br>
 <%= @user.password %>
 
+
+
 <h2>Listings</h2>   <!--- Using the association has many listings-->
 <% @user.listings.each do |listing| %>
     <p><%= listing.listing_description %></p>

@@ -10,24 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_232101) do
+ActiveRecord::Schema.define(version: 2021_03_27_164606) do
 
   create_table "listings", force: :cascade do |t|
-    t.string "listing_description"
-    t.string "address"
-    t.string "price"
-    t.string "features"
+    t.string "listing_description", null: false
+    t.string "address", null: false
+    t.string "price", null: false
+    t.string "features", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
+  create_table "showings", force: :cascade do |t|
+    t.integer "listing_id"
+    t.integer "user_id"
+    t.string "appointment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["listing_id"], name: "index_showings_on_listing_id"
+    t.index ["user_id"], name: "index_showings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "phone_number"
-    t.string "password_digest"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone_number", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
     get "/users/new" do 
+        # validates :attribute, phone: true
         erb :'users/new'
     end 
 
     post '/users' do
-        user = User.create(email: params[:email], name: params[:name], phone_number: params[:phone_number], password: params[:password], password_confirmation: params[:password_confirmation])
-        
-        session[:user_id] = user.id
-        redirect "/users/#{user.id}"
+        user = User.new(email: params[:email], name: params[:name], phone_number: params[:phone_number], password: params[:password], password_confirmation: params[:password_confirmation])
+        if user.save 
+            session[:user_id] = user.id  ## this keeps track of who is logged in
+            redirect "/users/#{user.id}"
+        else
+            flash[:info] = "Please fill in every box."
+            redirect "/users/new"
+        end    
     end
 
     get '/users/:id' do

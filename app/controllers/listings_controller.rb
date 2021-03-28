@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
     get "/listings/new" do 
+        redirect_if_not_logged_in
         erb :'listings/new'
     end 
 
@@ -11,10 +12,15 @@ class ListingsController < ApplicationController
 
     #create
     post '/listings' do
-        listing = Listing.create(listing_description: params[:listing_description], address: params[:address], price: params[:price], features: params[:features], user: current_user)
-        
-        # session[:listing_id] = listing.id
-        redirect "/listings/#{listing.id}"
+        redirect_if_not_logged_in
+        listing = Listing.new(listing_description: params[:listing_description], address: params[:address], price: params[:price], features: params[:features], user: current_user)
+        if listing.listing_description.present? && listing.address.present? && listing.price.present? && listing.features.present?
+            listing.save 
+            redirect "/listings/#{listing.id}"
+        else 
+            flash[:info] = "Please fill in every box."
+            redirect "/listings/new"
+        end
     end
 
     #read 
@@ -27,6 +33,7 @@ class ListingsController < ApplicationController
     #update
     
     get '/listings/:id/edit' do 
+        redirect_if_not_logged_in
         @listing = Listing.find(params[:id])
         erb :'listings/edit'
     end 
@@ -48,7 +55,8 @@ class ListingsController < ApplicationController
     end 
 
 
-    
+
+
   
 
 

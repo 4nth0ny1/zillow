@@ -1,6 +1,12 @@
 <!---shows all the listings created ->
+<!- Using the association has many listings-->
+  
+<br>
 
-<h2>Listings</h2>   <!--- Using the association has many listings-->
+<br>
+<h2>Listings</h2> 
+<hr>
+<br>
 <% @listings.each do |listing| %>
     <a href="/listings/<%=listing.id%>">
     <p><%= listing.listing_description %></p>
@@ -8,12 +14,15 @@
     <p><%= listing.price %></p>
     <p><%= listing.features %></p>
     </a>
+    
     <hr>
+    
     <% if listing.user%>
         <p>Agent: <%= listing.user.name %></p>
         <p><%= listing.user.email %></p>
         <p><%= listing.user.phone_number %></p>
     <% end %>
+   
     <hr>
 
 <% end %>

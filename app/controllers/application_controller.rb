@@ -1,6 +1,9 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
+  register Sinatra::Flash
+
 
   configure do
     set :public_folder, 'public'
@@ -22,6 +25,13 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!session[:user_id]
     end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/signin'
+      end  
+    end
+
   end
 
 

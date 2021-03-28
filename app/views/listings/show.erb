@@ -1,27 +1,35 @@
 
 
 <h2>Description: <%= @listing.listing_description %></h2>
-<br>
 <h2>Address: <%= @listing.address %></h2>
-<br>
 <h2>Price: <%= @listing.price %></h2>
-<br>
 <h2>Features: <%= @listing.features %></h2>
 
-
-
-<form action="/listings/<%= @listing.id %>/edit">
-  <input type="submit" value="Update">
-</form>
-
-<br>
-
-<form action="/listings/<%= @listing.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
+<% if @listing.user %> <!--this conditional shows nothing if the listing is owned by the realtor and allows the request a showing button if not owned by the realtor-->
+  <% nil %>
+<% else %>
+  <a href="/showings/new">Request a showing</a>
+<% end %>
 <br>
 <br>
+
+
+<% if current_user == @listing.user %>  <!-- current_user and @listing.user returns their respective objs. --->
+    <form action="/listings/<%= @listing.id %>/edit">
+      <input type="submit" value="Update">
+    </form>
+ 
+    <br>
+
+    <form action="/listings/<%= @listing.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+    <br>
+    <br>
+ <% end %>
+
+
 <% if @listing.user%>
   <h3>Agent: <%= @listing.user.name %></h3>           <!---#using the association -->
   <h3>Agent phone: <%= @listing.user.phone_number %></h3>
