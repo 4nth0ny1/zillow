@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
     get '/users/:id' do
         @user = User.find(params[:id])
+        listing_ids = @user.listings.pluck(:id)
+        @showings = Showing.where(listing_id: listing_ids)
         erb :'users/show'
     end
 

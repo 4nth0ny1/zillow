@@ -18,15 +18,21 @@
     <p>Agent</p>
     <p>Name: <%= showing.listing.user.name %></p>
     <p>Phone Number: <%= showing.listing.user.phone_number %></p>
+    <hr>
+    <br>
 <% end %>
 <br>
 
 <h2>Showings for your properties</h2>
-<!---i don't think @user will work because the user this user didn't create the showing.--->
-<!---how can i send data from one user to another------->
-<% @user.listings.showings do |listing| %>
-    <p><%= listing.showing.appointment%></p>
+<% @showings.each do |showing| %>
+    <p><%= showing.appointment%></p>
+    <p><%= showing.user.name%></p>
+    <p><%= showing.user.phone_number%></p>
+    <p><%= showing.listing.address%></p>
+    <hr>
+    <br>
 <% end %>
+
 
 <br>
 <h2>Listings</h2>   <!------ Using the association has many listings------->
