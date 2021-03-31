@@ -1,17 +1,39 @@
-<%= @user.name %> 
 <br>
-<%= @user.phone_number %>
-<br>
-<%= @user.email %>
-<br>
+<h2>Profile Page</h2>
+
+<p>Name: <%= @user.name %></p>
+<p>Phone Number: <%= @user.phone_number %></p>
+<p>Email: <%= @user.email %></p>
 <%= @user.password %>
+<!---
+<a href="/users//edit">Edit</a>
+<a href="/users/:id/delete">Delete</a>--->
 
+<br>
+<h2>Requested Showings</h2>
+<% @user.showings.each do |showing| %>
+    <p><%= showing.listing.address %></p>
+    <p><%= showing.appointment %></p>
+    <br>
+    <p>Agent</p>
+    <p>Name: <%= showing.listing.user.name %></p>
+    <p>Phone Number: <%= showing.listing.user.phone_number %></p>
+<% end %>
+<br>
 
+<h2>Showings for your properties</h2>
+<!---i don't think @user will work because the user this user didn't create the showing.--->
+<!---how can i send data from one user to another------->
+<% @user.listings.showings do |listing| %>
+    <p><%= listing.showing.appointment%></p>
+<% end %>
 
-<h2>Listings</h2>   <!--- Using the association has many listings-->
+<br>
+<h2>Listings</h2>   <!------ Using the association has many listings------->
 <% @user.listings.each do |listing| %>
     <p><%= listing.listing_description %></p>
     <p><%= listing.address %></p>
     <p><%= listing.price %></p>
     <p><%= listing.features %></p>
 <% end %>
+

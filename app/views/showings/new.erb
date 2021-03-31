@@ -1,8 +1,11 @@
 <h1>Request a showing</h1>
 
-<h3>Property: _____________________</h3>
+<h4>Property: <%= @listing.address %></h4>
+<br>
+
 
 <form method="POST" action="/showings">
+    <input type="hidden" value="<%= @listing.id %>" name="listing_id">
     <label for="appointment">Input a Date & Time: </label>
     <br>
     <input type="text" name="appointment">

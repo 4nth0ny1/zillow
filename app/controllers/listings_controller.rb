@@ -14,11 +14,11 @@ class ListingsController < ApplicationController
     post '/listings' do
         redirect_if_not_logged_in
         listing = Listing.new(listing_description: params[:listing_description], address: params[:address], price: params[:price], features: params[:features], user: current_user)
-        if listing.listing_description.present? && listing.address.present? && listing.price.present? && listing.features.present?
-            listing.save 
+        if listing.save
             redirect "/listings/#{listing.id}"
         else 
-            flash[:info] = "Please fill in every box."
+           
+            flash[:info] = listing.errors.full_messages.to_sentence
             redirect "/listings/new"
         end
     end
