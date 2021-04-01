@@ -52,14 +52,7 @@ class ListingsController < ApplicationController
     delete '/listings/:id' do 
         @listing = Listing.find(params[:id])
         @listing.delete
-        # session[:user_id] = nil
         redirect "/listings/new"
     end 
-
-
-
-
-  
-
 
 end
