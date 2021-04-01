@@ -39,11 +39,13 @@ class UsersController < ApplicationController
         user.update(email: params[:email], name: params[:name], phone_number: params[:phone_number])
         redirect "/users/#{user.id}"
     end 
+
+
     
     #delete    
     delete '/users/:id' do 
         user = User.find(params[:id])
-        user.delete
+        user.destroy
         session[:user_id] = nil
         redirect to "/users/new"
     end 

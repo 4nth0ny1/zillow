@@ -5,9 +5,9 @@
 <h2>Price: <%= @listing.price %></h2>
 <h2>Features: <%= @listing.features %></h2>
 
-
-<a href="/listings/<%= @listing.id %>/showings/new">Request a showing</a>
-
+<% if current_user != @listing.user %>
+    <a href="/listings/<%= @listing.id %>/showings/new">Request a showing</a>
+<% end %>
 <br>
 <br>
 

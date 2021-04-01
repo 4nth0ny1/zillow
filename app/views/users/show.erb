@@ -1,13 +1,20 @@
 <br>
-<h2>Profile Page</h2>
+<h1>Profile Page</h1>
 
 <p>Name: <%= @user.name %></p>
 <p>Phone Number: <%= @user.phone_number %></p>
 <p>Email: <%= @user.email %></p>
 <%= @user.password %>
-<!---
-<a href="/users//edit">Edit</a>
-<a href="/users/:id/delete">Delete</a>--->
+
+<a href="/users/<%= @user.id %>/edit">Edit</a>
+<br>
+<form action="/users/<%= @user.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+</form>
+
+<br>
+
 
 <br>
 <h2>Requested Showings</h2>
@@ -18,6 +25,7 @@
     <p>Agent</p>
     <p>Name: <%= showing.listing.user.name %></p>
     <p>Phone Number: <%= showing.listing.user.phone_number %></p>
+    <p>Status: <%= showing.status %></p>
     <hr>
     <br>
 <% end %>
@@ -26,9 +34,26 @@
 <h2>Showings for your properties</h2>
 <% @showings.each do |showing| %>
     <p><%= showing.appointment%></p>
+
     <p><%= showing.user.name%></p>
+    
     <p><%= showing.user.phone_number%></p>
     <p><%= showing.listing.address%></p>
+    <p>Status: <%= showing.status %></p>
+    
+    <% if showing.status != "accepted"%>
+        <form action="/showings/<%= showing.id %>/accepted" method="post">
+            <input type="submit" value="Accept">
+        </form>
+    <% end %>
+
+    <% if showing.status == "accepted"%>
+        <form action="/showings/<%= showing.id %>/cancelled" method="post">
+        <input type="submit" value="Cancel">
+        </form>
+    <% end %>
+      
+    <br>
     <hr>
     <br>
 <% end %>
@@ -41,5 +66,9 @@
     <p><%= listing.address %></p>
     <p><%= listing.price %></p>
     <p><%= listing.features %></p>
+    <br>
+    <a href="/listings/<%= listing.id %>/edit">Edit Listing</a>
+    <hr>
+    <br>
 <% end %>
 

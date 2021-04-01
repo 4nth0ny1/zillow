@@ -40,8 +40,10 @@ class ListingsController < ApplicationController
 
     patch "/listings/:id" do 
         listing = Listing.find(params[:id])
-        listing.update(listing_description: params[:listing_description], address: params[:address], price: params[:price], features: params[:features])
-        redirect "/listings/#{listing.id}"
+        if listing.user == current_user
+            listing.update(listing_description: params[:listing_description], address: params[:address], price: params[:price], features: params[:features])
+        end 
+        redirect "/users/#{listing.user.id}"
     end 
 
 
@@ -49,9 +51,9 @@ class ListingsController < ApplicationController
 
     delete '/listings/:id' do 
         @listing = Listing.find(params[:id])
-        @user.delete
+        @listing.delete
         # session[:user_id] = nil
-        redirect "/create_listing"
+        redirect "/listings/new"
     end 
 
 

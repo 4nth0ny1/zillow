@@ -16,6 +16,25 @@ class ShowingsController < ApplicationController
             redirect "/listings/#{showing.listing.id}/showings/new"
         end 
     end 
+
+    post "/showings/:id/accepted" do 
+        showing = Showing.find(params[:id])
+        if showing.listing.user == current_user
+            showing.update(status: "accepted")
+        end
+        redirect "/users/#{current_user.id}"
+    end 
+
+    post "/showings/:id/cancelled" do 
+        showing = Showing.find(params[:id])
+        if showing.listing.user == current_user
+            showing.update(status: "cancelled")
+        end
+        redirect "/users/#{current_user.id}"
+    end 
+
+
+
 end
 
 
