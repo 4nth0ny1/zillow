@@ -1,5 +1,6 @@
 <head>
   <style>
+
       .showing-container a {
         text-decoration: none;
         color: green;
@@ -12,11 +13,13 @@
   </style>
 
 </head>
-
-  <h2><%= @listing.listing_description %></h2>
-  <h4>Address: <%= @listing.address %></h4>
-  <h4>Price: <%= @listing.price %></h4>
-  <h4>Features: <%= @listing.features %></h4>
+<br>
+<h2>Listing</h2>
+<br>
+  <p><%= @listing.listing_description %></p>
+  <p>Address: <%= @listing.address %></p>
+  <p>Price: <%= @listing.price %></p>
+  <p>Features: <%= @listing.features %></p>
 
 <br>
 <div class="showing-container">
@@ -43,11 +46,11 @@
     <br>
  <% end %>
 
-
+<h4>Agent</h4>
 <% if @listing.user%>
-  <h4>Agent: <%= @listing.user.name %></h4>           <!---#using the association -->
-  <h4>Agent phone: <%= @listing.user.phone_number %></h4>
-  <h4>Agent email: <%= @listing.user.email %> </h4>
+  <p><%= @listing.user.name %></p>           <!---#using the association -->
+  <p><%= @listing.user.phone_number %></p>
+  <p><%= @listing.user.email %> </p>
 <% else %>
   <p>no agent</p>
 <% end %>

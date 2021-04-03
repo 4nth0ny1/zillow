@@ -1,3 +1,19 @@
+<head>
+    <style>
+        .create-account {
+            text-decoration: none;
+            color: black;
+        }
+
+        .create-account:hover {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+
 <h1>Login</h1>
 
 <form method="POST" action="/signin">
@@ -13,4 +29,4 @@
     <input type="submit" class="welcome-button" value="Sign In">
 </form>
 <br>
-<a href="/users/new">Create Account</a>
+<a href="/users/new" class="create-account">Create Account</a>
