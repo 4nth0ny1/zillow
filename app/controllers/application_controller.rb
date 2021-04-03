@@ -2,11 +2,11 @@ require './config/environment'
 require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
-  register Sinatra::Flash
+  register Sinatra::Flash     ## allows flash messages for errors and omissions with forms.
 
 
   configure do
-    set :public_folder, 'public'
+    set :public_folder, 'public'      
     set :views, 'app/views'
     set :sessions, true
     set :session_secret, ENV['SESSION_SECRET']
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       if !logged_in?
-        session[:url] = request.path
+        session[:url] = request.path  ## storing url that they were trying to go to for use later on. 
         redirect '/signin'
       end  
     end

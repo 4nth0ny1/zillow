@@ -17,8 +17,7 @@ class ListingsController < ApplicationController
         if listing.save
             redirect "/listings/#{listing.id}"
         else 
-           
-            flash[:info] = listing.errors.full_messages.to_sentence
+            flash[:info] = listing.errors.full_messages.to_sentence   ## errors is ActiveRecord object and full_messages is instance method that returns an array of error strings for what is missing. 
             redirect "/listings/new"
         end
     end
@@ -51,7 +50,7 @@ class ListingsController < ApplicationController
 
     delete '/listings/:id' do 
         @listing = Listing.find(params[:id])
-        @listing.delete
+        @listing.destroy
         redirect "/listings/new"
     end 
 

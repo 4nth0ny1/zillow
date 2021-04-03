@@ -17,6 +17,7 @@ class ShowingsController < ApplicationController
         end 
     end 
 
+    #status 
     post "/showings/:id/accepted" do 
         showing = Showing.find(params[:id])
         if showing.listing.user == current_user

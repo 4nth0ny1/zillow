@@ -8,6 +8,7 @@
 
 <a href="/users/<%= @user.id %>/edit">Edit</a>
 <br>
+<br>
 <form action="/users/<%= @user.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
@@ -22,7 +23,7 @@
     <p><%= showing.listing.address %></p>
     <p><%= showing.appointment %></p>
     <br>
-    <p>Agent</p>
+    <h4>Agent</h4>
     <p>Name: <%= showing.listing.user.name %></p>
     <p>Phone Number: <%= showing.listing.user.phone_number %></p>
     <p>Status: <%= showing.status %></p>
@@ -68,6 +69,12 @@
     <p><%= listing.features %></p>
     <br>
     <a href="/listings/<%= listing.id %>/edit">Edit Listing</a>
+    <br><br>
+    <form action="/listings/<%= listing.id %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+    </form>
+
     <hr>
     <br>
 <% end %>

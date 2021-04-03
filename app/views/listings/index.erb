@@ -1,28 +1,45 @@
 <!---shows all the listings created ->
 <!- Using the association has many listings-->
-  
+<head>
+    <style>
+
+
+
+        .listing-container a {
+            text-decoration: none;
+            color: black;
+
+        }
+      
+        .listing-container a:hover {
+            color: orange;
+            font-weight: bold;
+        }
+
+     
+
+    </style>
+
+</head>
 <br>
 
 <br>
 <h2>Listings</h2> 
-<hr>
 <br>
-<% @listings.each do |listing| %>
-    <a href="/listings/<%=listing.id%>">
-    <p><%= listing.listing_description %></p>
-    <p><%= listing.address %></p>
-    <p><%= listing.price %></p>
-    <p><%= listing.features %></p>
-    </a>
-    
-    <hr>
-    
-    <% if listing.user%>
-        <p>Agent: <%= listing.user.name %></p>
-        <p><%= listing.user.email %></p>
-        <p><%= listing.user.phone_number %></p>
+<div class="listing-container">
+    <% @listings.each do |listing| %>
+        <a href="/listings/<%=listing.id%>">
+            <p><%= listing.listing_description %></p>
+            <p><%= listing.address %></p>
+            <p><%= listing.price %></p>
+            <p><%= listing.features %></p>
+        </a>
+    <br>
+        <% if listing.user%>
+            <p>Agent: <%= listing.user.name %></p>
+            <p><%= listing.user.email %></p>
+            <p><%= listing.user.phone_number %></p>
+        <% end %>
+        <hr>
     <% end %>
-   
-    <hr>
-
-<% end %>
+</div>
