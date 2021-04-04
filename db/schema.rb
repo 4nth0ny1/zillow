@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_014956) do
+ActiveRecord::Schema.define(version: 2021_04_04_022504) do
 
   create_table "listings", force: :cascade do |t|
     t.string "listing_description", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_014956) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "requested"
+    t.string "delete_comment"
     t.index ["listing_id"], name: "index_showings_on_listing_id"
     t.index ["user_id"], name: "index_showings_on_user_id"
   end

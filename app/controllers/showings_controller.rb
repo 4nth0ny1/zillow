@@ -34,6 +34,11 @@ class ShowingsController < ApplicationController
         redirect "/users/#{current_user.id}"
     end 
 
+    delete '/showings/:id' do 
+        @showing = Showing.find(params[:id])
+        @showing.destroy
+        redirect "/users/#{current_user.id}"
+    end 
 
 
 end

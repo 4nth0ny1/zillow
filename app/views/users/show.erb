@@ -27,35 +27,44 @@
     <p>Name: <%= showing.listing.user.name %></p>
     <p>Phone Number: <%= showing.listing.user.phone_number %></p>
     <p>Status: <%= showing.status %></p>
+    <% if showing.status == "cancelled" %>
+        <form action="/showings/<%= showing.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete">
+        </form>
+    <% end %>
+    
     <hr>
-    <br>
+
 <% end %>
-<br>
 
 <h2>Showings for your properties</h2>
 <% @showings.each do |showing| %>
     <p><%= showing.appointment%></p>
-
-    <p><%= showing.user.name%></p>
-    
+    <p><%= showing.user.name%></p>    
     <p><%= showing.user.phone_number%></p>
     <p><%= showing.listing.address%></p>
     <p>Status: <%= showing.status %></p>
-    
+
     
     <form action="/showings/<%= showing.id %>/accepted" method="post">
         <input type="submit" value="Accept">
     </form>
 
-
+    <br>
     <form action="/showings/<%= showing.id %>/cancelled" method="post">
         <input type="submit" value="Cancel">
     </form>
-      
+    <br>
+
     <br>
     <hr>
     <br>
 <% end %>
+
+
+
+
 
 
 <br>
