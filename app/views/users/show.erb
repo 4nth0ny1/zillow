@@ -42,17 +42,15 @@
     <p><%= showing.listing.address%></p>
     <p>Status: <%= showing.status %></p>
     
-    <% if showing.status != "accepted"%>
-        <form action="/showings/<%= showing.id %>/accepted" method="post">
-            <input type="submit" value="Accept">
-        </form>
-    <% end %>
+    
+    <form action="/showings/<%= showing.id %>/accepted" method="post">
+        <input type="submit" value="Accept">
+    </form>
 
-    <% if showing.status == "accepted"%>
-        <form action="/showings/<%= showing.id %>/cancelled" method="post">
+
+    <form action="/showings/<%= showing.id %>/cancelled" method="post">
         <input type="submit" value="Cancel">
-        </form>
-    <% end %>
+    </form>
       
     <br>
     <hr>
