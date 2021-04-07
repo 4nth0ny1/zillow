@@ -1,5 +1,5 @@
 <br>
-<h1>Profile Page</h1>
+<h1><%= @user.name %>'s Profile Page</h1>
 
 <p>Name: <%= @user.name %></p>
 <p>Phone Number: <%= @user.phone_number %></p>
@@ -18,7 +18,7 @@
 
 
 <br>
-<h2>Requested Showings</h2>
+<h2>Properties You'd Like to See</h2>
 <% @user.showings.each do |showing| %>
     <p><%= showing.listing.address %></p>
     <p><%= showing.appointment %></p>
@@ -27,6 +27,22 @@
     <p>Name: <%= showing.listing.user.name %></p>
     <p>Phone Number: <%= showing.listing.user.phone_number %></p>
     <p>Status: <%= showing.status %></p>
+    
+    <form action="/showings/<%= showing.id %>/edit">
+        <input type="submit" value="Update">
+    </form>
+
+        <br>
+    <form action="/showings/<%= showing.id %>/accepted" method="post">
+        <input type="submit" value="Accept">
+    </form>
+
+    <br>
+    <form action="/showings/<%= showing.id %>/cancelled" method="post">
+        <input type="submit" value="Cancel">
+    </form>
+    <br>
+   
     <% if showing.status == "cancelled" %>
         <form action="/showings/<%= showing.id %>" method="post">
             <input id="hidden" type="hidden" name="_method" value="delete">
@@ -40,13 +56,17 @@
 
 <h2>Showings for your properties</h2>
 <% @showings.each do |showing| %>
-    <p><%= showing.appointment%></p>
-    <p><%= showing.user.name%></p>    
-    <p><%= showing.user.phone_number%></p>
     <p><%= showing.listing.address%></p>
+    <p><%= showing.appointment%></p>
+    <br>
+    <p>Client: <%= showing.user.name%></p>    
+    <p><%= showing.user.phone_number%></p>
     <p>Status: <%= showing.status %></p>
 
-    
+     <form action="/showings/<%= showing.id %>/edit">
+        <input type="submit" value="Update">
+    </form>
+    <br>
     <form action="/showings/<%= showing.id %>/accepted" method="post">
         <input type="submit" value="Accept">
     </form>

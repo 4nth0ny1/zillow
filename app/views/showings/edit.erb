@@ -1,0 +1,10 @@
+<h1> Edit your Showing </h1>
+
+<form action="/showings/<%= @showing.id %>" method="POST" >
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="appointment">Appointment: </label>
+    <br>
+    <input type="text" name="appointment" value="<%= @showing.appointment %>">
+    <br>
+    <input type="submit" value="Update">
+</form>

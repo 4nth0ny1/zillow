@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
 
     post '/signin' do 
         user = User.find_by(email: params[:email])
-        if user && user.authenticate(params[:password])  #authenticate is a bcrypt meth.  ## checks if user email exists
+        if user && user.authenticate(params[:password])  #authenticate is a bcrypt meth.  ## checks if user email/password exists
+
             session[:user_id] = user.id           ## sets the cookie
             if session[:url]                      ## if the cookie has a url in it
                 url = session[:url]                 ## saves the url in variable
